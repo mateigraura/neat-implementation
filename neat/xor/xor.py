@@ -24,7 +24,7 @@ def eval_xor(genomes, config):
 
 def execute(config):
     population = Population(config)
-    population.evaluate(eval_xor, 350)
+    population.evaluate(eval_xor, 600)
 
 
 if __name__ == "__main__":

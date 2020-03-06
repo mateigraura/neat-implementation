@@ -16,7 +16,7 @@
     "hidden_nodes_count": 0,
     "connection_type": "full",
     "max_weight": 1,
-    "min_weight": -1,
+    "min_weight": 0,
     "compatibility_threshold": 3.0
   },
   "stagnation": {

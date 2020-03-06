@@ -39,7 +39,7 @@ class GenomeTest(unittest.TestCase):
         # should be of same length despite some being disjoint genes
         assert len(child.connection_genes) == len(genome2.connection_genes)
         # check child got disabled gene transferred
-        assert child.connection_genes[disabled_gene].enabled == False
+        assert not child.connection_genes[disabled_gene].enabled
 
     def test_mutate_add_node(self):
         pass

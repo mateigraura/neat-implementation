@@ -82,6 +82,9 @@ class Genome:
                                                     enabled))
 
     def compatibility_distance(self, genome1, genome2):
+        if len(genome1.connection_genes) < len(genome2.connection_genes):
+            genome1, genome2 = genome2, genome1
+
         disjoint_distance = (self._disjoint_genes_count(genome1, genome2) *
                              self.params.disjoint_coefficient)
         genes_count = max(len(genome1.connection_genes),
@@ -150,12 +153,9 @@ class Genome:
 
         self.nodes.append(new_node)
 
-    def _disjoint_genes_count(self, genome1, genome2):
+    @staticmethod
+    def _disjoint_genes_count(genome1, genome2):
         disjoint_nodes = abs(len(genome1.nodes) - len(genome2.nodes))
-
-        if len(genome1.connection_genes) < len(genome2.connection_genes):
-            genome1, genome2 = genome2, genome1
-
         disjoint_connections = 0.0
         inno_numbers1 = [connection.innovation_number
                          for connection in genome1.connection_genes]
@@ -169,12 +169,10 @@ class Genome:
 
         return disjoint_nodes + disjoint_connections
 
-    def _avg_weight_diff(self, genome1, genome2):
+    @staticmethod
+    def _avg_weight_diff(genome1, genome2):
         match_count = 0
         total_diff = 0
-
-        if len(genome1.connection_genes) < len(genome2.connection_genes):
-            genome1, genome2 = genome2, genome1
 
         for cg1 in genome1.connection_genes:
             for cg2 in genome2.connection_genes:
